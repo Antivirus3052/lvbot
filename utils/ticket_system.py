@@ -207,27 +207,30 @@ class CreateTicketView(View):
 class ItemView(View):
     """Interactive buttons for shop items with ticket system and real purchases"""
     
-    def __init__(self, *, timeout=180, item_title=None, seller_id=None, price=None):
+    def __init__(self, *, timeout=None, item_title=None, seller_id=None, price=None):
+        # Change timeout=180 to timeout=None for full persistence
         super().__init__(timeout=timeout)
         self.item_title = item_title if item_title else "Product"
         self.seller_id = seller_id  # Store the seller's ID
         self.price = self._extract_price(price) if price else 0.0
         
-        # Purchase button
+        # Purchase button - add item info to custom_id to make it unique
         purchase_button = Button(
             style=discord.ButtonStyle.success,
             label="Purchase",
             emoji="💳",
+            # Use a generic custom_id for persistent buttons
             custom_id="purchase_item"
         )
         purchase_button.callback = self.purchase_callback
         self.add_item(purchase_button)
         
-        # More info button
+        # More info button - add item info to custom_id to make it unique
         info_button = Button(
             style=discord.ButtonStyle.primary,
             label="More Info",
             emoji="ℹ️",
+            # Use a generic custom_id for persistent buttons
             custom_id="more_info"
         )
         info_button.callback = self.info_callback

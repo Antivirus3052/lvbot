@@ -119,7 +119,8 @@ class Shop(commands.Cog):
         )
         
         # Add interactive view with item title and seller ID
-        view = ItemView(item_title=title, seller_id=interaction.user.id, price=price)
+        # Use a new instance with specific timeout for each message
+        view = ItemView(timeout=None, item_title=title, seller_id=interaction.user.id, price=price)
         await interaction.response.send_message(embed=embed, view=view)
 
 async def setup(bot):

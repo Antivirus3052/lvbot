@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import json
 import os
-from utils.ticket_system import CreateTicketView, TicketCloseButton
+from utils.ticket_system import CreateTicketView, TicketCloseButton, ItemView
 from cogs.feedback import FeedbackView
 
 class PersistentViewHandler:
@@ -18,6 +18,9 @@ class PersistentViewHandler:
         
         # Add persistent ticket close button
         self.bot.add_view(TicketCloseButton())
+        
+        # Add persistent ItemView (generic version)
+        self.bot.add_view(ItemView())
         
         # Register feedback views
         feedback_config_file = 'feedback_config.json'
