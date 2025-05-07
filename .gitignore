@@ -1,0 +1,17 @@
+# Sensitive files
+.env
+config.json
+user_balances.json
+feedback_config.json
+welcome_config.json
+reaction_roles.json
+ECHO is off.
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
